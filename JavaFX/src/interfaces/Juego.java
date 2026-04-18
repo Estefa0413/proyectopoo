@@ -56,6 +56,7 @@ public class Juego extends Application {
     private boolean jugando = true;
     private boolean finMostrado = false;
 
+    private long ultimoSpawnEnemigo = 0;
     private long ultimoDisparo = 0;
     private int siguienteOleada = 1;
 
@@ -262,6 +263,23 @@ public class Juego extends Application {
     if (distancia % 2200 < velocidadScroll) {
         double x = 80 + random.nextInt(ANCHO_VENTANA - 160);
         items.add(new Item(x, -40, "vida", 1));
+    }
+
+    long ahora = System.nanoTime();
+
+    if (ahora - ultimoSpawnEnemigo > 2_200_000_000L) {
+        int tipoEnemigo = random.nextInt(3);
+        double x = 60 + random.nextInt(ANCHO_VENTANA - 120);
+
+        if (tipoEnemigo == 0) {
+            enemigos.add(new BabosaToxica(x, -100));
+        } else if (tipoEnemigo == 1) {
+            enemigos.add(new GarzaEnemiga(x, -130));
+        } else {
+            enemigos.add(new BasureroContaminante(x, -120));
+        }
+
+        ultimoSpawnEnemigo = ahora;
     }
 }
 

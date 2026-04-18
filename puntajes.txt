@@ -1,1 +1,3 @@
 Ruth,1250
+Ruth,400
+Estefa,0
