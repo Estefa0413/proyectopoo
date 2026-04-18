@@ -1,0 +1,16 @@
+
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Juego",
+            "request": "launch",
+            "mainClass": "interfaces.Juego",
+            "projectName": "JavaFX_f0b465d1",
+            "vmArgs": "--module-path \"C:\\Users\\usuario\\Desktop\\javafx-sdk-26\\lib\" --add-modules javafx.controls,javafx.fxml",
+            "console": "internalConsole",
+            "shortenCommandLine": "jarmanifest"
+        }
+    ]
+}
