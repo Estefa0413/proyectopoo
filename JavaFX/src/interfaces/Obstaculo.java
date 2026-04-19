@@ -1,53 +1,48 @@
+
 package interfaces;
 
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
+import javafx.scene.image.Image;
 import javafx.scene.shape.Rectangle;
 
 public class Obstaculo extends ObjetoJuego {
-
-    private String tipo;
-
+    
+    private String tipo; 
+    
     public Obstaculo(double x, double y, String tipo) {
-        super(x, y, tipo, 2.2);
+        super(x, y, tipo, 0.0005);  
         this.tipo = tipo;
-
-        if (tipo.equals("tronco")) {
-            this.ancho = 90;
-            this.alto = 30;
-        } else if (tipo.equals("roca")) {
-            this.ancho = 46;
-            this.alto = 46;
-        } else {
-            this.ancho = 60;
-            this.alto = 40;
-        }
+        this.ancho = 80;  
+        this.alto = 80;  
     }
 
-    @Override
     public void pintar(GraphicsContext graficos) {
-        if (tipo.equals("tronco")) {
-            graficos.setFill(Color.SADDLEBROWN);
-            graficos.fillRoundRect(x, y, ancho, alto, 20, 20);
-        } else if (tipo.equals("roca")) {
-            graficos.setFill(Color.GRAY);
-            graficos.fillOval(x, y, ancho, alto);
-        } else {
-            graficos.setFill(Color.DARKOLIVEGREEN);
-            graficos.fillRoundRect(x, y, ancho, alto, 12, 12);
+        Image imagen = null;
+        if (tipo.equals("piedra")) {
+            imagen = Juego.imagenes.get("piedra");
+        } else if (tipo.equals("tronco")) {
+            imagen = Juego.imagenes.get("tronco");
         }
+        if (imagen != null) {
+            graficos.drawImage(imagen, x, y, ancho, alto); 
+        } else {
+            graficos.setFill(javafx.scene.paint.Color.BROWN);
+            graficos.fillRect(x, y, ancho, alto);
+        }
+    }
+    
+    @Override
+    public Rectangle obtenerRectangulo() {
+        return new Rectangle(x, y, ancho, alto);
     }
 
     @Override
     public void mover() {
-        y += velocidad;
-        if (y > Juego.ALTO_VENTANA + 80) {
-            activo = false;
+        y += 2;
+
+        if (y > Juego.ALTO_VENTANA + 300){
+            y = -600;
         }
     }
 
-    @Override
-    public Rectangle obtenerRectangulo() {
-        return new Rectangle(x + 4, y + 4, ancho - 8, alto - 8);
-    }
 }

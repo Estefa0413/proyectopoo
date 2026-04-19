@@ -18,19 +18,19 @@ public class Item extends ObjetoJuego {
     private long ultimoCambioFrameBonus = 0;
 
     public Item(double x, double y, String tipo, int valor) {
-        super(x, y, tipo, 2.2);
+        super(x, y, tipo, 1.8);
         this.tipo = tipo;
         this.valor = valor;
 
         if (tipo.equals("vida")) {
-            this.ancho = 40;
-            this.alto = 40;
+            this.ancho = 85;
+            this.alto = 80;
         } else if (tipo.equals("puntos")) {
-            this.ancho = 42;
-            this.alto = 42;
+            this.ancho = 88;
+            this.alto = 82;
         } else {
-            this.ancho = 42;
-            this.alto = 42;
+            this.ancho = 88;
+            this.alto = 82;
         }
     }
 

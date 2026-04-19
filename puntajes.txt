@@ -1,3 +1,10 @@
+Jugador,1870
+Ruth,1740
+Jugador,1370
 Ruth,1250
+Estefa,970
+Jugador,720
+JugadorRuth,550
+Sofi3,500
 Ruth,400
-Estefa,0
+Jugador1,300

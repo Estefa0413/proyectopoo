@@ -49,7 +49,7 @@ public class Juego extends Application {
 
     private int[][] mapa;
     private double offsetMapaY = 0;
-    private double velocidadScroll = 2.0;
+    private double velocidadScroll = 1.6;
 
     private int puntaje = 0;
     private int distancia = 0;
@@ -97,18 +97,16 @@ public class Juego extends Application {
 
         jugador = new JugadorAnimado(ANCHO_VENTANA / 2.0 - 50, 360, "capibaraanimado", 4.2, 3, "descanso");
     }
-
     public void cargarImagenes() {
         cargarImagen("capibaraanimado", "/interfaces/capibaraanimado.png");
-        cargarImagen("capibara", "/interfaces/capibara.png");
-        cargarImagen("tilemap", "/interfaces/tilemap.png");
         cargarImagen("babosa", "/interfaces/babosa.png");
         cargarImagen("garza", "/interfaces/garza.png");
         cargarImagen("basurero", "/interfaces/basurero.png");
+        cargarImagen("piedra", "/interfaces/piedra.png");
+        cargarImagen("tronco", "/interfaces/tronco.png");
         cargarImagen("vida", "/interfaces/corazon.png");
         cargarImagen("puntos", "/interfaces/naranja.png");
         cargarImagen("bonus", "/interfaces/hoja.png");
-        cargarImagen("disparo", "/interfaces/disparo.png");
         cargarImagen("fondo", "/interfaces/fondo.png");
     }
 
@@ -141,7 +139,7 @@ public class Juego extends Application {
     enemigos.add(new BabosaToxica(510, -220));
 
     obstaculos.add(new Obstaculo(260, -150, "tronco"));
-    obstaculos.add(new Obstaculo(420, -320, "roca"));
+    obstaculos.add(new Obstaculo(420, -320, "piedra"));
 
     items.add(new Item(340, -260, "vida", 1));
     items.add(new Item(180, -420, "puntos", 100));
@@ -202,6 +200,10 @@ public class Juego extends Application {
         } else if (e instanceof BasureroContaminante) {
             ((BasureroContaminante) e).calcularFrame(t);
         }
+
+        for (Obstaculo obstaculo : obstaculos) {
+            obstaculo.mover();
+        }
     }
 
     generarOleadasPlanificadas();
@@ -226,8 +228,8 @@ public class Juego extends Application {
 
     if (siguienteOleada == 2 && distancia > 1400) {
         enemigos.add(new BasureroContaminante(320, -120));
-        obstaculos.add(new Obstaculo(180, -240, "tronco"));
-        obstaculos.add(new Obstaculo(470, -330, "roca"));
+        obstaculos.add(new Obstaculo(180, -140, "tronco"));
+        obstaculos.add(new Obstaculo(470, -230, "piedra"));
 
         items.add(new Item(240, -260, "bonus", 200));
         siguienteOleada++;
@@ -246,7 +248,7 @@ public class Juego extends Application {
     private void generarObstaculosDinamicos() {
     if (distancia % 500 < velocidadScroll) {
         double x = 80 + random.nextInt(ANCHO_VENTANA - 160);
-        String tipo = random.nextBoolean() ? "roca" : "tronco";
+        String tipo = random.nextBoolean() ? "piedra" : "tronco";
         obstaculos.add(new Obstaculo(x, -70, tipo));
     }
 

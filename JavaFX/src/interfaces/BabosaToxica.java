@@ -13,8 +13,8 @@ public class BabosaToxica extends Enemigo {
     private int anchoImagen;
     private int altoImagen;
 
-    private final int ANCHO_RENDER = 90;
-    private final int ALTO_RENDER = 65;
+    private final int ANCHO_RENDER = 100;
+    private final int ALTO_RENDER = 85;
 
     public BabosaToxica(double x, double y) {
         super(x, y, "babosa", 1.8, 2, 100);

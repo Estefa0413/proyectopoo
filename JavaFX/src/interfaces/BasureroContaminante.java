@@ -13,8 +13,8 @@ public class BasureroContaminante extends Enemigo {
     private int anchoImagen;
     private int altoImagen;
 
-    private final int ANCHO_RENDER = 95;
-    private final int ALTO_RENDER = 95;
+    private final int ANCHO_RENDER = 110;
+    private final int ALTO_RENDER = 110;
 
     public BasureroContaminante(double x, double y) {
         super(x, y, "basurero", 1.3, 3, 220);
